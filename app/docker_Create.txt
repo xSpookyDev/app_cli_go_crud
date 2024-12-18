@@ -1,0 +1,13 @@
+//creacion network bridge
+docker network create conexion-mysql-go
+
+_
+_
+//creacion de container con volumen : 
+  docker run --name mysql-cli-go -e MYSQL_ROOT_PASSWORD=dalebulla7 -e MYSQL_DATABASE=golang-prueba -e MYSQL_USER=spooky -e MYSQL_PASSWORD=dalebulla -p 3306:3306 -v C:/Users/Asku/docker_data:/var/lib/mysql -d mysql:latest
+
+docker run --name go-app --network conexion-mysql-go -e DB_USER=spooky -e DB_PASSWORD=dalebulla-e DB_SERVER=mysql-cli-go -e DB_PORT=3306-e DB_NAME=golang-prueba -d cli-crud-app
+
+//creacion docker + network
+
+docker run --name go-app --network my-bridge-network -d cli-crud-app
